@@ -38,8 +38,21 @@ Console.WriteLine(fac.Name + " : " + fac.Style);
 }
 Console.WriteLine("-------------------------");
 
+if(p == nrOfPlayers *4){
+Console.WriteLine("--------REMAINING--------");
+var rest = factions.GetRange(p,factions.Count()-p);
+foreach(var rem in rest){
+Console.WriteLine(rem.Name + " : " + rem.Style);
+}
 }
 
+}
+
+
+
+Console.WriteLine("-------------------------");
+Console.WriteLine("Press 'L' to assign seats");
+SeatAssigner(playerMap);
 }
 
 
@@ -94,6 +107,22 @@ public static void Shuffle<T>(this IList<T> list)
         list[n] = value;
     }
 } 
+
+public static void SeatAssigner(Dictionary<string, List<Faction>> x){
+var tempList = x.Keys.ToList();
+Shuffle<string>(tempList);
+while(true){
+string key = Console.ReadKey().Key.ToString();
+if(key.ToUpper() == "L")
+    Console.WriteLine("Starting from the BLUE Seat and going clockwise:");
+    foreach(var gamer in tempList){
+        Console.WriteLine(gamer);
+    }
+    break;
+}
+
+}
+
 
 }
 
